@@ -9,9 +9,10 @@ import SwiftUI
 
 @main
 struct DemoJsonApp: App {
+    let login = PostViewModel()
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().environmentObject(login)
         }
     }
 }
