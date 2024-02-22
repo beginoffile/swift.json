@@ -15,6 +15,13 @@ class PostViewModel: ObservableObject{
         login(email:"eve.holt@reqres.in", password:"cityslicka")
     }
      */
+    init(){
+        if let sesion = UserDefaults.standard.object(forKey: "sesion") as? Int{
+            authenticated = sesion
+        }else{
+            authenticated = 0
+        }
+    }
     
     func login(email:String, password: String){
         guard let url = URL(string: "https://reqres.in/api/login") else {return}
@@ -35,6 +42,7 @@ class PostViewModel: ObservableObject{
                     DispatchQueue.main.async {
                         print(datos.token)
                         self.authenticated = 1
+                        UserDefaults.standard.setValue(1, forKey: "sesion")
                     }
                 }
             }catch let error as NSError{
