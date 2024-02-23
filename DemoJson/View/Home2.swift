@@ -15,17 +15,19 @@ struct Home2: View {
             ProgressView()
         }else{
             List(json2.datosModelo.data, id:\.id){ item in
-                HStack{
-                    Image(systemName: "persona.fill")
-                        .data(url: URL(string: item.avatar)!)
-                        .frame(width: 80, height: 80)
-                        .clipped()
-                        .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
-                    VStack(alignment: .leading){
-                        Text(item.first_name).font(.title)
-                        Text(item.email).font(.subheadline)
-                    }
-                }.navigationTitle("JSON CON IMAGEN")
+                NavigationLink(destination: DetalleView(id: item.id)){
+                    HStack{
+                        Image(systemName: "persona.fill")
+                            .data(url: URL(string: item.avatar)!)
+                            .frame(width: 80, height: 80)
+                            .clipped()
+                            .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
+                        VStack(alignment: .leading){
+                            Text(item.first_name).font(.title)
+                            Text(item.email).font(.subheadline)
+                        }
+                    }.navigationTitle("JSON CON IMAGEN")
+                }
             }
     
         }
